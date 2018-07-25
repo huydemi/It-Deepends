@@ -207,7 +207,7 @@ extension DepthImageViewController {
       case .color:
         finalImage = depthFilters?.colorHighlight(image: filterImage, mask: mask, orientation: orientation)
       case .blur:
-        finalImage = origImage
+        finalImage = depthFilters?.blur(image: filterImage, mask: mask, orientation: orientation)
       }
       
       imageView.image = finalImage

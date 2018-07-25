@@ -103,6 +103,12 @@ extension DepthImageViewController {
   
   func loadCurrent(image name: String, withExtension ext: String) {
 
+    let depthReader = DepthReader(name: name, ext: ext)
+    let depthDataMap = depthReader.depthDataMap()
+    depthDataMap?.normalize()
+    let ciImage = CIImage(cvPixelBuffer: depthDataMap)
+    depthDataMapImage = UIImage(ciImage: ciImage)
+    
     // Create the original unmodified image
     origImage = UIImage(named: "\(name).\(ext)")
     filterImage = CIImage(image: origImage)
